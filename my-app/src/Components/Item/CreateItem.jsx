@@ -16,7 +16,7 @@ function CreateItem() {
                     .then(response => {
                         setName("");
                         setPrice();
-                        navigate("/items");
+                        navigate("/Items");
                     })
                     .catch(err => console.error(err))
             }}>
