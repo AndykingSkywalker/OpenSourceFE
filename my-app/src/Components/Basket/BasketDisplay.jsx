@@ -20,10 +20,12 @@ function BasketsDisplay() {
 
   const calculateTotalPrice = (items) => {
     if (!items || items.length === 0) {
-      return 0;
+      return "0.00";
     }
 
-    return items.reduce((total, item) => total + item.price, 0);
+    let total = items.reduce((total, item) => total + item.price, 0);
+
+    return total.toFixed(2);
   };
 
   return (

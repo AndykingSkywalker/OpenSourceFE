@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router";
 import axios from "axios";
@@ -10,7 +10,7 @@ function ItemStructure(props) {
     axios
       .patch(`http://localhost:8088/item/add/${props.id}/1`)
       .then(() => {
-        navigate("/items");
+        navigate("/Basket");
       })
       .catch((error) => alert('Item has already been added to the basket '));
   };
@@ -18,9 +18,11 @@ function ItemStructure(props) {
   const deleteItem = () => {
     axios
       .delete(`http://localhost:8088/item/delete/${props.id}`)
-      .then(() => {
+      .then((response) => {
+        console.log(response)
+        props.getItems();
       })
-      .catch((error) => alert('Item has already been deleted '));
+      .catch((error) => console.error(error));
   };
 
   return (

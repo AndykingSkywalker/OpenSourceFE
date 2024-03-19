@@ -2,10 +2,13 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import ItemDisplay from "./ItemDisplay";
 
-function PageForItem() {
+function PageForItem(props) {
+  const [items, setItems] = useState([]);
   function getItems() {
     axios.get("http://localhost:8088/item/get")
-      .then((response) => { setItems(response.data) })
+      .then((response) => { 
+        setItems(response.data)
+       })
       .catch(console.log);
   }
 
@@ -13,7 +16,7 @@ function PageForItem() {
     getItems();
   }, []);
 
-  const [items, setItems] = useState([]);
+  
 
   return (
     <div>
