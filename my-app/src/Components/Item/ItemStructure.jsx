@@ -15,7 +15,7 @@ function ItemStructure(props) {
       .patch(`http://localhost:8088/item/add/${props.id}/1`)
       .then((res) => {
         console.log(res);
-        window.location.reload();
+        // window.location.reload();
       })
       .catch((error) => alert('Item has already been added to the basket '));
   };
@@ -81,7 +81,6 @@ function ItemStructure(props) {
 
 ItemStructure.propTypes = {
   name: PropTypes.string.isRequired,
-  quantity: PropTypes.number.isRequired,
   price: PropTypes.number.isRequired,
   id: PropTypes.number.isRequired,
 };

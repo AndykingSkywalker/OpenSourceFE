@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { clear } from "@testing-library/user-event/dist/clear";
+import { useParams } from "react-router-dom";
 
-function BasketsDisplay() {
+function BasketsDisplay(props) {
   const [baskets, setBaskets] = useState([]);
+  const params = useParams(); 
 
   useEffect(() => {
     axios.get("http://localhost:8088/basket/get")
@@ -19,8 +20,11 @@ function BasketsDisplay() {
   };
 
   function clearItems(){
-    baskets.slice(0, baskets.length);
-  }
+    axios.patch("http://localhost:8088/item/remove/" + params.id)
+    .then((res) => {
+      console.log(res);
+    }).catch((err) => console.error(err))
+  };
 
 
   const calculateTotalPrice = (items) => {
@@ -47,9 +51,12 @@ function BasketsDisplay() {
               {basket.items.map(basketItem => (
                   <div key={basketItem.id}>
                     {basketItem.name} - Price: £{basketItem.price} 
+                    <button onClick={clearItems} className="btn btn-danger " style={{marginLeft: "5px"}}>Clear Item</button>
                   </div>
+                  
                 ))}
               </li>
+              <br />
                 </ul>
                 <br/>
               </div>
@@ -59,7 +66,6 @@ function BasketsDisplay() {
 
 
           </div>
-         <button onClick={clearItems} className="btn btn-danger ">Clear Items</button>
         </div>
       </div>
     </div>

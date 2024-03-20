@@ -8,7 +8,7 @@ function CreateItemPage() {
             <div style={{flex: 1}}>
             <CreateItem/>
             </div>
-                <div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", marginRight: "30px", maxWidth: "600px", border: "3px solid black" }}>
+                <div style={{ flex: 2, display: "flex", flexDirection: "column", alignItems: "center", maxWidth: "14rem", marginRight: "3rem" }}>
                 <CreateBasket/>
                 <BasketDisplay/>
                 </div>
