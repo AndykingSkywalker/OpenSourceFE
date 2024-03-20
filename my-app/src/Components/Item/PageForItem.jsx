@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import ItemDisplay from "./ItemDisplay";
 
+
 function PageForItem(props) {
   const [items, setItems] = useState([]);
   function getItems() {
@@ -23,6 +24,7 @@ function PageForItem(props) {
       <h1>Groceries</h1>
       <div id="">
         <ItemDisplay listItems={items} />
+      
       </div>
     </div>
   );

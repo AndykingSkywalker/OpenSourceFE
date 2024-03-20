@@ -13,8 +13,9 @@ function ItemStructure(props) {
   const handleAddToBasket = () => {
     axios
       .patch(`http://localhost:8088/item/add/${props.id}/1`)
-      .then(() => {
-        navigate("/Basket");
+      .then((res) => {
+        console.log(res);
+        window.location.reload();
       })
       .catch((error) => alert('Item has already been added to the basket '));
   };
@@ -31,7 +32,7 @@ function ItemStructure(props) {
 
   return (
     <div>
-    <div style={{ marginLeft: "20px", maxWidth: "16rem", margin: "auto", alignItems: "center" }} className="col">
+    <div style={{ marginLeft: "20px", maxWidth: "20rem", margin: "auto", alignItems: "center" }} className="col">
       <div className="card">
         <div
           style={{

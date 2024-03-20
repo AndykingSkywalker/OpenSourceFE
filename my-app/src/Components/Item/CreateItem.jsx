@@ -65,7 +65,7 @@ function CreateItem(props) {
           backgroundColor: "#243D72",
           padding: "30px",
           borderRadius: "10%",
-          maxWidth: "400px",
+          maxWidth: "18rem",
           fontWeight: "bold",
           color: "white"
         }}
@@ -94,7 +94,7 @@ function CreateItem(props) {
         
         <br />
         <button
-          style={{ marginLeft: "8rem"}}
+          style={{ marginLeft: "4.5rem"}}
           type="submit"
           className="btn btn-success btn-lg"
         >
