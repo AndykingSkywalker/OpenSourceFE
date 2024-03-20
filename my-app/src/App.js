@@ -13,6 +13,7 @@ import Navbar from './Components/Homepage/Navbar.jsx';
 import ProtectedRoutes from './ProtectedRoutes.js';
 import styled, {ThemeProvider} from 'styled-components';
 import { lightTheme, darkTheme, GlobalStyles } from './themes.js';
+import EditItem from './Components/Item/EditItem.jsx';
 
 function App() {
 
@@ -28,7 +29,7 @@ function App() {
         <Route element={<Home />} path="/Home" />
         <Route path="/LoginPage" element={<Login />} />
         <Route path="/Basket" element={<BasketPage />} />
-        <Route path="/Items" element={<PageForItem />} />
+        <Route path="/EditItem/:id" element={<EditItem />} />
         <Route path="/CreateItems" element={<CreateItemPage />} />
       </Routes>
     </Router>

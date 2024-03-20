@@ -6,6 +6,10 @@ import axios from "axios";
 function ItemStructure(props) {
   const navigate = useNavigate();
 
+  const handleEdit = () => {
+    navigate("/EditItem/" + props.id);
+  };
+
   const handleAddToBasket = () => {
     axios
       .patch(`http://localhost:8088/item/add/${props.id}/1`)
@@ -26,18 +30,51 @@ function ItemStructure(props) {
   };
 
   return (
-    <div id="itemCard" className="card-group d-inline-flex padding" style={{padding: "20px"}}>
-      <div class="card border-dark mb-3" style={{width: "17%"}}>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">Name: {props.name} </li>
-          <li class="list-group-item">Price: £{props.price} </li>
-        </ul>
-      <button type="button" onClick={handleAddToBasket} className="btn btn-success ">
-        Add to basket
-      </button>
-      <button type="button" onClick={deleteItem} className="btn btn-danger">Delete</button>
+    <div>
+    <div style={{ marginLeft: "20px", maxWidth: "16rem", margin: "auto", alignItems: "center" }} className="col">
+      <div className="card">
+        <div
+          style={{
+            fontWeight: "bold",
+            textAlign: "center",
+            fontSize: "20px",
+          }}
+          className="card-body"
+        >
+          <h5 className="card-title">{props.name}</h5>
+          <div className="card-text">
+            <ul className="list-group list-group-flush">
+              <li className="list-group-item">£{props.price}</li>
+            </ul>
+
+            <ul className="list-group list-group-flush">
+              <li className="list-group-item">
+                <button onClick={handleAddToBasket} className="btn btn-success ">Add to Basket</button>
+              </li>
+              <li className="list-group-item">
+                <button
+                  style={{  maxWidth: "100%" }}
+                  className="btn btn-primary "
+                  onClick={handleEdit}
+                >
+                  Edit Item
+                </button>
+              </li>
+              <li className="list-group-item">
+                <button
+                  style={{  maxWidth: "100%" }}
+                  className="btn btn-danger "
+                  onClick={deleteItem}
+                >
+                  Delete Item
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
+  </div>
   );
 }
 

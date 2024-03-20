@@ -21,7 +21,7 @@ function PageForItem(props) {
   return (
     <div>
       <h1>Groceries</h1>
-      <div id="ItemDisplay">
+      <div id="">
         <ItemDisplay listItems={items} />
       </div>
     </div>

@@ -59,11 +59,6 @@ function Navbar() {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/Items">
-                Items
-              </a>
-            </li>
-            <li className="nav-item">
               <a className="nav-link" href="/Basket">
                 Basket
               </a>
@@ -85,7 +80,10 @@ function Navbar() {
               </a>
               <div className="dropdown-menu">
                 <a className="dropdown-item" href="/">
-                  Log off
+                  Wishlist
+                </a>
+                <a className="dropdown-item" href="/">
+                  Log Off
                 </a>
               </div>
             </li>

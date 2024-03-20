@@ -62,10 +62,12 @@ function CreateItem(props) {
         style={{
           margin: "auto",
           fontSize: "20px",
-          backgroundColor: "lightBlue",
+          backgroundColor: "#243D72",
           padding: "30px",
           borderRadius: "10%",
-          maxWidth: "600px",
+          maxWidth: "400px",
+          fontWeight: "bold",
+          color: "white"
         }}
         onSubmit={(e) => {
           e.preventDefault();
@@ -92,7 +94,7 @@ function CreateItem(props) {
         
         <br />
         <button
-          style={{ marginLeft: "43%" }}
+          style={{ marginLeft: "8rem"}}
           type="submit"
           className="btn btn-success btn-lg"
         >

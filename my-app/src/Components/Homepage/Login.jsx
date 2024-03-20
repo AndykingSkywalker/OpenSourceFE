@@ -14,8 +14,10 @@ function Login() {
   return (
     <div style={{textAlign: "center", display: "grid", placeItems:"center", marginTop: "12%"}}>
       <h1 className="title" style={{ textAlign: "center", fontSize: "60px" }}>Login Form</h1>
+      <br />
       <form  onSubmit={handleSubmit} style={{fontSize: "30px"}} className="App">
         <input required type="text" placeholder="Username" />
+        <br />
         <br />
         <input required type="password" placeholder="Password" />
         <br />
