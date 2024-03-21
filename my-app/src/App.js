@@ -14,6 +14,7 @@ import ProtectedRoutes from './ProtectedRoutes.js';
 import styled, {ThemeProvider} from 'styled-components';
 import { lightTheme, darkTheme, GlobalStyles } from './themes.js';
 import EditItem from './Components/Item/EditItem.jsx';
+import Wishlist from './Components/Wishlist/Wishlist.jsx';
 
 function App() {
 
@@ -31,6 +32,7 @@ function App() {
         <Route path="/Basket" element={<BasketPage />} />
         <Route path="/EditItem/:id" element={<EditItem />} />
         <Route path="/CreateItems" element={<CreateItemPage />} />
+        <Route path="Wishlist" element={<Wishlist />} />
       </Routes>
     </Router>
   </header>

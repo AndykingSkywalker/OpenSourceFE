@@ -1,10 +1,23 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router";
 import axios from "axios";
+import Heart from "react-animated-heart";
 
 function ItemStructure(props) {
+  const [isClick, setClick] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+ const savedState = localStorage.getItem(`heart-${props.id}`);
+    setClick(savedState === "true");
+  }, [props.id]);
+
+  const handleHeartClick = () => {
+    const newState = !isClick;
+    setClick(newState);
+    localStorage.setItem(`heart-${props.id}`, newState);
+  };
 
   const handleEdit = () => {
     navigate("/EditItem/" + props.id);
@@ -15,7 +28,6 @@ function ItemStructure(props) {
       .patch(`http://localhost:8088/item/add/${props.id}/1`)
       .then((res) => {
         console.log(res);
-        // window.location.reload();
       })
       .catch((error) => alert('Item has already been added to the basket '));
   };
@@ -46,11 +58,11 @@ function ItemStructure(props) {
           <div className="card-text">
             <ul className="list-group list-group-flush">
               <li className="list-group-item">£{props.price}</li>
-            </ul>
-
+            </ul> 
             <ul className="list-group list-group-flush">
               <li className="list-group-item">
                 <button onClick={handleAddToBasket} className="btn btn-success ">Add to Basket</button>
+                
               </li>
               <li className="list-group-item">
                 <button
@@ -70,6 +82,13 @@ function ItemStructure(props) {
                   Delete Item
                 </button>
               </li>
+              <li className="list-group-item">
+                <p>Add To Wishlist</p>
+                <div style={{margin: "-3rem"}}>
+            <Heart isClick={isClick} onClick={handleHeartClick} />
+            </div>
+                
+              </li>
             </ul>
           </div>
         </div>
@@ -86,3 +105,6 @@ ItemStructure.propTypes = {
 };
 
 export default ItemStructure;
+
+
+

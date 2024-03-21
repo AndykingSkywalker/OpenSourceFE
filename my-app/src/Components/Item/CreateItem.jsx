@@ -78,9 +78,10 @@ function CreateItem(props) {
         <input
           value={name}
           onChange={(e) => setName(e.target.value)}
-          id="name"
+          id="itemName"
           type="text"
           className="form-control"
+          aria-label="Item Name"
         />
         <br />
         <label htmlFor="itemPrice">Item Price: </label>
@@ -90,6 +91,7 @@ function CreateItem(props) {
           id="itemPrice"
           type="text"
           className="form-control"
+          aria-label="Item Price"
         />
         
         <br />
@@ -103,7 +105,7 @@ function CreateItem(props) {
       </form>
       <br />
       <br />
-      <div className="row row-cols-4 g-4 mt-1">{newItems}</div>
+      <div className="row row-cols-1 row-cols-md-4 g-4 mt-1">{newItems}</div>
     </div>
   );
 }

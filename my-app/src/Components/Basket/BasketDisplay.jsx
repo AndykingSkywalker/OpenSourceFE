@@ -20,7 +20,8 @@ function BasketsDisplay(props) {
   };
 
   function clearItems(){
-    axios.patch("http://localhost:8088/item/remove/" + params.id)
+    console.log(props.id)
+    axios.patch("http://localhost:8088/item/remove/" + props.id)
     .then((res) => {
       console.log(res);
     }).catch((err) => console.error(err))
@@ -56,7 +57,7 @@ function BasketsDisplay(props) {
                   
                 ))}
               </li>
-              <br />
+              
                 </ul>
                 <br/>
               </div>

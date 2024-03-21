@@ -32,7 +32,7 @@ function Navbar() {
         <div>
             <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div style={{marginRight: "50px", fontSize: "20px"}} className="container-fluid">
-      <a className="navbar-brand" href="/Home"> <img src={Logo} width="180rem" height="120rem" alt="" /></a>
+      <a className="navbar-brand" href="/Home"> <img src={Logo} width="180rem" height="120rem" alt="company logo" /></a>
         
         <button
           className="navbar-toggler"
@@ -47,20 +47,16 @@ function Navbar() {
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <br />
+          <button style={{fontSize: "20px", fontWeight: "bold"}} className="btn btn-secondary" onClick={() => themeToggler()}>Change Theme</button>
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-            <button style={{fontSize: "20px", fontWeight: "bold"}} className="btn btn-secondary" onClick={() => themeToggler()}>Change Theme</button>
+           
             <li className="nav-item">
               <a
-                className="nav-link active"
+                className="nav-link"
                 aria-current="page"
                 href="/Home"
               >
                 Home
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/Basket">
-                Basket
               </a>
             </li>
             <li className="nav-item">
@@ -79,7 +75,7 @@ function Navbar() {
                 User
               </a>
               <div className="dropdown-menu">
-                <a className="dropdown-item" href="/">
+                <a className="dropdown-item" href="/Wishlist">
                   Wishlist
                 </a>
                 <a className="dropdown-item" href="/">
