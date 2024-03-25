@@ -1,8 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import ItemStructure from "./ItemStructure";
-
+import axios from "axios";
 function ItemDisplay({ listItems }) {
+
+  // function getItems() {
+  //   axios.get("http://localhost:8088/item/get")
+  //     .then((response) => { setItems(response.data) })
+  //     .catch(console.log);
+  // }
+
+  // useEffect(() => {
+  //   getItems();
+  // }, []);
+
+  // const [items, setItems] = useState([]);
+
   return (
     <div>
       {listItems.map((item) => (
@@ -11,6 +24,7 @@ function ItemDisplay({ listItems }) {
           id={item.id}
           name={item.name}
           price={item.price}
+          
         />
       ))}
     </div>

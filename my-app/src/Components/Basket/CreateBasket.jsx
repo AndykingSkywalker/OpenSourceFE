@@ -21,7 +21,7 @@ function CreateBasket() {
       .post("http://localhost:8088/basket/create", { name, items: [] })
       .then((response) => {
         setName("");
-        navigate("/items");
+        window.location.reload();
       })
       .catch((err) => console.error(err));
   };
@@ -32,12 +32,12 @@ function CreateBasket() {
   <div className="card-group d-inline-flex padding" style={{ padding: "10px" }}>
     <div class="card border-dark mb-3" style={{ width: "17%" }}>
       
-    <form onSubmit={handleSubmit}>
+    <form hidden={BasketExists} onSubmit={handleSubmit}>
       <div className="container" id="CreateBasket">
         <div className="row">
           <div className="col">
             <div label htmlFor="name" className="form-label">
-              <h4>Create your basket</h4>
+              <h4 style={{textAlign: "center"}}>Create your basket</h4>
             </div>
             <input
               type="text"
@@ -46,15 +46,14 @@ function CreateBasket() {
               size="20"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              required
-              disabled={BasketExists} 
+              required 
             />
           </div>
         </div>
       </div>
       <br />
       <div>
-        <button type="submit" id="SubmitCreateBasket" disabled={BasketExists} className="btn btn-success" style={{textAlign: "center"}}>
+        <button type="submit" id="SubmitCreateBasket" className="btn btn-success" style={{textAlign: "center", marginLeft: "4.5rem", marginBottom: "10px"}}>
           Submit
         </button>
       </div>

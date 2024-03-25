@@ -1,46 +1,113 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom"
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-
-function CreateItem() {
-    const [name, setName] = useState("");
-    const [price, setPrice] = useState();
-    const navigate = useNavigate("");
+import ItemStructure from "./ItemStructure";
+import { useNavigate } from "react-router-dom";
 
 
-    return (
-        <div className="card-group d-inline-flex padding">
-            <form onSubmit={e => {
-                e.preventDefault()
-                axios.post("http://localhost:8088/item/create", { name, price })
-                    .then(response => {
-                        setName("");
-                        setPrice();
-                        navigate("/items");
-                    })
-                    .catch(err => console.error(err))
-            }}>
-                <div className="container" id="CreateItem">
-                    <div className="row">
-                        <div className="col">
-                            <div label htmlfor="name" className="form-label ">Name</div>
-                            <input type="text" id="name" size="20" value={name} onChange={e => setName(e.target.value)} required />
-                        </div>
-                        <div className="col">
-                            <div label htmlfor="price" className="form-label ">Price</div>
-                            <input type="number" id="price" size="5" step="0.01" value={price} onChange={e => setPrice(e.target.value)} required />
-                        </div>
-                    </div>
-                </div>
-                <br />
-                <div>
-                    <button type="submit" id="SubmitCreateItem" className="btn btn-success"> Submit </button>
-                </div>
+function CreateItem(props) {
+  const [name, setName] = useState("");
+  const [price, setPrice] = useState("");
+  const [items, setItems] = useState([]);
+  
+  const navigate = useNavigate();
 
-            </form>
-        </div>
+  function getItems() {
+    axios
+      .get("http://localhost:8088/item/get")
+      .then((response) => {
+        setItems(response.data);
+      })
+      .catch((err) => console.error(err));
+  }
 
+  useEffect(() => {
+    getItems();
+  }, []);
+
+  function createItem() {
+    axios
+      .post("http://localhost:8088/item/create", {
+        name,
+        price
+      })
+      .then((response) => {
+        console.log(response);
+      
+        setName("");
+        setPrice("");
+        getItems();
+      })
+      .catch((err) => console.error(err));
+  }
+
+  const newItems = [];
+  for (let item of items) {
+    newItems.push(
+      <ItemStructure
+        key={item.name + "" + item.price}
+        id={item.id}
+        name={item.name}
+        price={item.price}
+        getItems={getItems}
+      />
     );
+  }
+
+  return (
+    <div>
+      <h1 style={{ textAlign: "center", justifyContent: "center" }}>
+        Items &nbsp;
+      </h1>
+      <form
+        style={{
+          margin: "auto",
+          fontSize: "20px",
+          backgroundColor: "#243D72",
+          padding: "30px",
+          borderRadius: "10%",
+          maxWidth: "18rem",
+          fontWeight: "bold",
+          color: "white"
+        }}
+        onSubmit={(e) => {
+          e.preventDefault();
+          createItem();
+        }}
+      >
+        <label htmlFor="itemName">Item Name: </label>
+        <input
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          id="itemName"
+          type="text"
+          className="form-control"
+          aria-label="Item Name"
+        />
+        <br />
+        <label htmlFor="itemPrice">Item Price: </label>
+        <input
+          value={price}
+          onChange={(e) => setPrice(e.target.value)}
+          id="itemPrice"
+          type="text"
+          className="form-control"
+          aria-label="Item Price"
+        />
+        
+        <br />
+        <button
+          style={{ marginLeft: "4.5rem"}}
+          type="submit"
+          className="btn btn-success btn-lg"
+        >
+          Submit
+        </button>
+      </form>
+      <br />
+      <br />
+      <div className="row row-cols-1 row-cols-md-4 g-4 mt-1">{newItems}</div>
+    </div>
+  );
 }
 
 export default CreateItem;

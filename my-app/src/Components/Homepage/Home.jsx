@@ -1,12 +1,7 @@
 function Home() {
     return (
-        <div>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <h1>"This is a shop apparently”</h1>
+        <div style={{marginTop: "40px", textAlign: "center"}}>
+            <h1>Welcome to AJK</h1>
         </div>
     );
 }
